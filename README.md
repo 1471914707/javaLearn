@@ -2,6 +2,8 @@
 迷你版java面试笔试总结，面向有基础的同学，涵盖基础知识、框架、网络及中间件知识点总结，继续更新中。
 
 **部分知识来源JavaGuide等网络学习资源。
+在线阅读：https://1471914707.github.io/
+下载地址：链接: https://pan.baidu.com/s/1MxKXIZtoBd57pTwTIDyrgA 提取码: 3arb
 # java基础
 
 * **内部类**：静态内部类、成员内部类、局部内部类、匿名内部类。
