@@ -64,9 +64,9 @@
 
 有兴趣的同学还可以关注下方公众号，后期会有拓展面试总结文章更新。
 
-![图1]("https://images.gitee.com/uploads/images/2020/0430/185858_f8fec7ae_1775447.jpeg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/185858_f8fec7ae_1775447.jpeg "qrcode_for_gh_b58f8f55f944_258.jpg")
 
 有兴趣联系添加本人微信号，帮助承担公众号发文工作和Gitee更新拓写。
 
 
-![图2]("https://images.gitee.com/uploads/images/2020/0430/185923_d7063732_1775447.jpeg")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/185923_d7063732_1775447.jpeg "微信图片_20200210134600.jpg")
