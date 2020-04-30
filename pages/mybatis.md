@@ -12,6 +12,14 @@ select|update|delete|insert|resultMap|parameterMap|sql|include|selectKey|
 >
 > and user_name like #{userNameLike}
 
+**下划线转驼峰的三种做法**：
+
+1、属性使用AS别名。
+
+2、约定下划线转驼峰配置：mybatis.configuration.map-underscore-to-camel-case=true。
+
+3、<resultMap>为属性添加映射字段。
+
 不同的xml写一样的namespace和id，可以但会覆盖，因为用的map<namespace+id，object>，没有写namespace的话相同id则会报错。
 
 **mybatis的executor执行器**：（严格限制在SqlSession生命周期范围）
@@ -26,3 +34,4 @@ select|update|delete|insert|resultMap|parameterMap|sql|include|selectKey|
 
 * mybatis默认开启一级缓存，一级缓存是查询数据库前的最后一层缓存，使用PerpetualCache（即HashMap缓存），利用自动生成的cacheKey查询出数据，update/delete/insert提交回滚事务时会删除缓存。SqlSession级别的缓存。关闭方式有配置文件，插件，<insert ...flushCache="true">。
 * 二级缓存比较复杂，涉及事务脏读，需要在**mapping.xml配置<cache />来开启。mapper级别的缓存。两个Mapper的namespace如果相同，那么这两个Mapper执行的sql查询会被缓存在同一个二级缓存中。要开启二级缓存需要在config配置文件中设置cacheEnabled属性为true。
+

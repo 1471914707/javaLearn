@@ -5,8 +5,9 @@
 欢迎大家补充和指点。
 
 
-# 目录
+# 目录[![star](https://gitee.com/linjiayu_index/javaLearn/badge/star.svg?theme=dark)](https://gitee.com/linjiayu_index/javaLearn/stargazers)
 
+[汇总<连着看更畅快>](pages/total.md)
 
 [Java基础](pages/Java基础.md)
 
