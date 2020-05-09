@@ -1,3 +1,5 @@
+# springboot
+
 * 相对于spring更加纯注解开发，减少配置和大量样板代码。
 * 与spring生态系统的天然结合。
 * 可以使用内置工具(如Maven和Gradle)开发管理jar和测试Spring Boot应用程序。
@@ -41,7 +43,7 @@
 
 **4.参数校验**：
 
-springboot引进来的基础包上已经包含所要用的校验注解，在controller上加注解@Validated，方法上无论传的参数还是对象，都在前面加@Valid，单独参数除了加@Valid，还需要直接加@NotNull之类的校验规则。值得一提的是，因为之前有同事说处理参数校验出错的时候，不用在代理里处理bindResult，其实这种说法并不对，因为不单独处理的话时候会抛出异常MethodArgumentNotValidException，如果使用全局异常处理的话，就可以集中处理这类问题。
+springboot引进来的基础包上已经包含所要用的校验注解，在controller上加注解@Validated，方法上无论传的参数还是对象，都在前面加@Valid，单独参数除了加@Valid，还需要直接加@NotNull之类的校验规则。值得一提的是，因为之前有同事说处理参数校验出错的时候，不用在代码里处理bindResult，其实这种说法并不对，因为不单独处理的话时候会抛出异常MethodArgumentNotValidException，如果使用全局异常处理的话，就可以集中处理这类问题。
 
 除了contoller之外，service这些也可以使用
 
@@ -57,4 +59,4 @@ public class PersonService {
 ```
 
 * 自定义校验，实现的一个注解@interface，再实现一个具体类实现ConstraintValidator接口。
-* 校验组，例@NotNull(groups = DeletePersonGroup.class)，DeletePersonGroup是静态内部接口，在方法参数上使用@Validated(AddPersonGroup.class)即可生效，它的作用是同一个字段可能在不同场景有不同的校验规则，这个时候就可以根据校验组灵活使用。
+* 校验组，例如@NotNull(groups = DeletePersonGroup.class)，DeletePersonGroup是静态内部接口，在方法参数上使用@Validated(AddPersonGroup.class)即可生效，它的作用是同一个字段可能在不同场景有不同的校验规则，这个时候就可以根据校验组灵活使用。

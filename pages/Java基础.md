@@ -1,5 +1,6 @@
 # java基础
 
+* **执行顺序**：父类静态变量 -> 父类静态代码块 -> 子类静态变量 -> 子类静态代码块 -> 父类非静态变量 -> 父类构造函数 -> 子类非静态变量 -> 子类构造函数。
 * **内部类**：静态内部类、成员内部类、局部内部类、匿名内部类。
 * **重写**(override)要求子类的返回值小于父类（类型相同），修饰符使用范围也大于父类，抛出异常小于父类。
 * **静态方法**不能调用类非静态方法，因为静态方法可以在不生成对象的时候直接调用。
@@ -40,6 +41,14 @@ public ThreadPoolExecutor(int corePoolSize,//核心线程数量
 **Synchronized和Lock的异同**：前者利用Object的notify/wait之类的调度，后者用Condition进行线程间调度。再者前者是可以加在方法/代码片段给JVM执行，后者直接代码段通过代码控制。前者自动释放，后者手动解锁。
 
 **Queue**：实现类LinkedList，ArrayBlockingQueue, LinkedBlockingQueue，PriorityQueue, PriorityBlockingQueue，ConcurrentLinkedQueue。
+
+**Map的多线程安全版本**：
+
+1. Collections.synchronizedMap(Map)，原理是传入一个map和object然后对object加锁操作map。
+2. Hashtable，继承Dictionary，初始11，拓容2N+1。与HashMap迭代器是快速失败（fast-fail）不同，Hashtable是安全失败（fail-safe），迭代时可以增加删除修改。
+3. ConcurrentHashMap（常用）。
+
+**安全失败（fail—safe）**：java.util.concurrent包下的容器都是安全失败，可以在多线程下并发使用，并发修改。
 
 **hashMap拓容**：默认16，负载因子0.75，拓容为2的N次方（使用2次方除了数据重新分配比较匀称之外，还将取余%运算转化成&运算）。
 

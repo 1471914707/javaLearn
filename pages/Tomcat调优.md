@@ -1,3 +1,7 @@
+
+
+# Tomcat调优
+
 1. JVM调优：-Xms/JVM初始化堆的大小，-Xmx/JVM堆最大值。
 
 2. 禁用DNS查询：在Connector标签中使用enableLookups="false"。
@@ -13,4 +17,7 @@
 acceptCount最大等待数、maxConnections最大连接数，maxThreads最大线程数。
 
 5. 禁用AJP协议：本来是用于重用链接的，但用了nginx后不需要，8009端口那个protocol协议。
+
 6. 配置gzip压缩（HTTP压缩）。https协议下还可能走8443端口还得改这个端口的配置。也可以放在nginx处理
+
+   

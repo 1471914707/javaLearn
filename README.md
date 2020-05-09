@@ -4,6 +4,14 @@
 
 欢迎大家补充和指点。
 
+**更新日志**：
+
+1. 2020-05-03 15:59  redis/缓存   增加缓存穿透处理。
+2. 2020-05-05 22:20  秒杀系统      完善秒杀系统部分。
+3. 2020-05-06 23:55  其他         优化对最终消息一致等描述，同时将其搬至微服务模块。
+4. 2020-05-07 17:05  java基础     增加执行顺序。
+5. 2020-05-09 19:44  认证授权      增加XSS。
+6. 2020-05-09 20:07 电商系统       新增。
 
 # 目录[![star](https://gitee.com/linjiayu_index/javaLearn/badge/star.svg?theme=dark)](https://gitee.com/linjiayu_index/javaLearn/stargazers)
 
@@ -48,6 +56,8 @@
 [设计高并发系统](pages/设计高并发系统.md)
 
 [秒杀系统](pages/秒杀系统.md)
+
+[电商系统](pages/电商)
 
 [Zookeeper](pages/Zookeeper.md)
 

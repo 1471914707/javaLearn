@@ -1,3 +1,5 @@
+# JVM 
+
 * **堆**：对象和数组分配内存，是垃圾收集器管理的主要区域，又称为GC堆，1.7之后运行时常量池也在此。
 
 * **方法区/元空间/直接内存**：储存已被虚拟机加载的类信息，常量，静态变量，即时编译器编译后的代码数据
@@ -44,7 +46,7 @@
 > 缺点及办法：
 >
 > 1. 垃圾碎片，因为使用的是标记-清除算法，可以设置发生指定次数full gc后对内存做一次压缩。
-> 2. 重新标记阶段耗时较久，在full gc之前做一次minor gc，减少年轻代对老年代的无效引用，加快重新标记的开销。
+> 2. 重新标记阶段耗时较久，在full gc之前做一次minor gc，减少老年代对年轻代的无效引用，加快重新标记的开销。
 > 3. concurrent mode failure，minor gc的时候将存活对象放进老年代，但是老年代的空间放不下，可以设置占满了百分比多少就开始gc，建议是80%。
 > 4. promotion failed，还是发生了minor gc要放对象到老年代，但是老年代的碎片较多，找不到一段连续区域放下它。
 >
@@ -59,11 +61,11 @@
 
 **内存泄露**：对象没有被使用了但是因为某些原因不能被回收。例如：栈中push进去的元素一直没有拿出来使用；HashMap的key改了hascode导致之前的找不回来。
 
-Full GC本身不会先进行Minor GC，我们可以配置-XX:+ScavengeBeforeFullGC（非CMS回收算法）、CMSScavengeBeforeRemark（CMS回收算法）可以，**让Full GC之前先进行一次Minor GC**，因为老年代很多对象都会引用到新生代的对象，先进行一次Minor GC可以提高老年代GC的速度。
+Full GC本身不会先进行Minor GC，我们可以配置-XX:+ScavengeBeforeFullGC（非CMS回收算法），CMSScavengeBeforeRemark（CMS回收算法）可以**让Full GC之前先进行一次Minor GC**，因为老年代很多对象都会引用到新生代的对象，先进行一次Minor GC可以提高老年代GC的速度。
 
 **对象创建过程** ：
 
-1. **类加载检查**：虚拟机遇到一个new指令的时候，首先去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过，没有的话，必须执行相应的类加载过程。
+1. **类加载检查**：虚拟机遇到一个new指令的时候，首先去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、链接和初始化过，没有的话，必须执行相应的类加载过程。
 
 2. **分配内存**：类加载过就可以确定所需内存大小，为对象分配内存就是在java堆中划分出来一块确定带下的内存。方式有“指针碰撞"和”空闲列表“，选择哪个方式取决于JAVA堆是否规整，而java堆是否规整又由采用的垃圾收集器是否带有压缩整理功能决定。涉及线程安全（采用CAS+失败重试，TLAB:每个线程预先分配内存，则首先在TLAB分配，大于剩余内存或快用完，就用上面的CAS）
 
@@ -71,8 +73,8 @@ Full GC本身不会先进行Minor GC，我们可以配置-XX:+ScavengeBeforeFull
 >
 > 空闲列表：内存不规整，虚拟机维护一空闲列表，需要多大内存空闲列表又显示有就拿去用，如cms收集器
 
-2. **初始化零值**：内存空间初始化，类字段初始值
-3. **设置对象头**:类的元数据信息，对象的哈希码，GC分代年龄
+2. **初始化零值**：内存空间初始化，类字段初始值。
+3. **设置对象头**：类的元数据信息，对象的哈希码，GC分代年龄等。
 4. **执行init方法**
 
 **对象访问定位方式**
@@ -87,7 +89,7 @@ Full GC本身不会先进行Minor GC，我们可以配置-XX:+ScavengeBeforeFull
 
 **-XX：NewRatio=4**：年轻代与老年代比例1：4。
 
-**-XX：SurvivorRatio=4**：年轻代的eden和一个survior区的比例1 ： 4。和两个survior比就是2:4。
+**-XX：SurvivorRatio=4**：年轻代的eden和一个survior区的比例4 ： 1。和两个survior比就是2：4。
 
 **-Xss**：设置栈大小。
 
@@ -107,6 +109,7 @@ Full GC本身不会先进行Minor GC，我们可以配置-XX:+ScavengeBeforeFull
 - ​	survivor和eden的最优比例为1:8。年轻代=eden+2survivor。即-XX:SurvivorRatio=8 
 - ​	年轻代和老年代的最优比例为1:2，即-XX:NewRatio=2。
 
-**查看web应用的jvm信息**：1. jps查询java应用基础信息，jinfo -flags PID。2. jmap -heap PID查看分代情况， jmap -histo:live <pid>可迫使JVM进行一次full gc。3. jstat -gcutil pid:查看每个代区域使用的百分比情况。
+**查看web应用的jvm信息**：1. jps查询java应用基础信息，jinfo -flags PID查看启动设置。2. jmap -heap PID查看分代情况， jmap -histo:live <pid>可迫使JVM进行一次full gc。3. jstat -gcutil pid查看每个代区域使用的百分比情况，还有GC次数和总花费时间。
 
 **OOM怎么排查**：如果JVM配置了-XX:+HeapDumpOnOutOfMemoryError，可以拿到发生OOM的时候，堆里面都有些什么。
+
