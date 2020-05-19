@@ -12,6 +12,10 @@
 4. 2020-05-07 17:05  java基础     增加执行顺序。
 5. 2020-05-09 19:44  认证授权      增加XSS。
 6. 2020-05-09 20:07 电商系统       新增。
+7. 2020-05-10 15:10  Docker        新增Docker知识。
+8. 2020-05-11 00:15  其他             增加API接口注意问题。
+9. 2020-05-11 00:15  网络问题     HTTP1.0和1.1区别。
+10. 2020-05-19 16::00 数据库         增加count(1)和count(*)
 
 # 目录[![star](https://gitee.com/linjiayu_index/javaLearn/badge/star.svg?theme=dark)](https://gitee.com/linjiayu_index/javaLearn/stargazers)
 
