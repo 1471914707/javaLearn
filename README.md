@@ -16,7 +16,7 @@
 8. 2020-05-11 00:15  其他             增加API接口注意问题。
 9. 2020-05-11 00:15  网络问题     HTTP1.0和1.1区别。
 10. 2020-05-19 16::00 数据库         增加count(1)和count(*)
-
+11. 2020-06-06 23:20  算法题      增加算法题模块
 # 目录[![star](https://gitee.com/linjiayu_index/javaLearn/badge/star.svg?theme=dark)](https://gitee.com/linjiayu_index/javaLearn/stargazers)
 
 [汇总<连着看更畅快>](pages/total.md)
@@ -76,6 +76,8 @@
 [lombok](pages/lombok.md)（非面试，只是感觉不错总结一下）
 
 [其他](pages/其他.md)
+
+[个人算法题集锦（不包正确，共赏共勉）](算法题/total.md)
 
 有兴趣的同学还可以关注下方公众号，后期会有拓展面试总结文章更新。
 
